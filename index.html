@@ -104,3 +104,743 @@
         .activity-log h4 {
             margin: 0 0 10px 0;
             color: #feca57;
+        }
+
+        .tamagotchi-device {
+            width: 350px;
+            height: 500px;
+            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            display: none;
+        }
+
+        .screen {
+            width: 100%;
+            height: 280px;
+            background: #1a1a2e;
+            border-radius: 15px;
+            border: 8px solid #0f3460;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .pet-display {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #16213e, #0f3460);
+            position: relative;
+        }
+
+        .pet {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #4ecdc4);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .pet.sleeping {
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pet.sick {
+            animation: shake 0.5s linear infinite;
+            filter: drop-shadow(0 0 10px #ff6b6b);
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .pet.happy {
+            animation: jump 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px #feca57);
+        }
+
+        @keyframes jump {
+            0%, 50%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #4ecdc4;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        .stat-bar {
+            width: 60px;
+            height: 8px;
+            background: #0f3460;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #4ecdc4;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecdc4, #44a08d);
+            transition: width 0.5s ease;
+        }
+
+        .stat-fill.low {
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+        }
+
+        .pet-name {
+            color: #feca57;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .status-text {
+            color: #4ecdc4;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 8px;
+            border: none;
+            border-radius: 15px;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.feed {
+            background: linear-gradient(145deg, #feca57, #ff9ff3);
+            color: #2c2c54;
+        }
+
+        .btn.play {
+            background: linear-gradient(145deg, #48cae4, #023e8a);
+            color: white;
+        }
+
+        .btn.medicine {
+            background: linear-gradient(145deg, #06ffa5, #048a81);
+            color: #2c2c54;
+        }
+
+        .btn.clean {
+            background: linear-gradient(145deg, #a8e6cf, #3d5a80);
+            color: white;
+        }
+
+        .btn.sleep {
+            background: linear-gradient(145deg, #c77dff, #560bad);
+            color: white;
+        }
+
+        .btn.stats {
+            background: linear-gradient(145deg, #ffb3c6, #fb8500);
+            color: #2c2c54;
+        }
+
+        .age-display {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #4ecdc4;
+            font-size: 12px;
+        }
+
+        .evolution-notice {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(254, 202, 87, 0.9);
+            color: #2c2c54;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            z-index: 100;
+        }
+
+        .sleep-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #4ecdc4;
+            font-size: 24px;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            z-index: 100;
+        }
+
+        .pet-id-display {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <!-- Connection Status -->
+    <div id="connectionStatus" class="connection-status disconnected">🔴 Not Connected</div>
+
+    <!-- Activity Log -->
+    <div id="activityLog" class="activity-log">
+        <h4>Recent Activity</h4>
+        <div>Waiting for activities...</div>
+    </div>
+
+    <!-- Setup Panel -->
+    <div id="setupPanel" class="setup-panel">
+        <h2>🐣 Firebase Tamagotchi</h2>
+        <p>Create a new pet or join an existing one!</p>
+        
+        <input type="text" id="caretakerName" placeholder="Enter your name" maxlength="20">
+        
+        <button onclick="setupNewPet()">🆕 Create New Pet</button>
+        
+        <hr style="margin: 20px 0; border: 1px solid rgba(255,255,255,0.3);">
+        
+        <input type="text" id="petIdInput" placeholder="Enter Pet ID to join" maxlength="10">
+        <button onclick="joinExistingPet()">🤝 Join Existing Pet</button>
+    </div>
+
+    <!-- Pet ID Display -->
+    <div id="petIdDisplay" class="pet-id-display" onclick="copyPetId()" style="display: none;"></div>
+
+    <div class="tamagotchi-device" id="tamagotchiDevice">
+        <div class="screen">
+            <div class="pet-display">
+                <div class="age-display">Age: <span id="age">0</span></div>
+                <div class="pet-name" id="petName">Tama-chan</div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span>❤️ Health</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="health"></div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <span>🍎 Hunger</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="hunger"></div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <span>😊 Happy</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="happiness"></div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <span>💤 Energy</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="energy"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pet" id="pet">🥚</div>
+                <div class="status-text" id="statusText">Your egg is about to hatch!</div>
+                
+                <div class="sleep-overlay" id="sleepOverlay">
+                    <div>💤 Sleeping... 💤</div>
+                </div>
+            </div>
+            
+            <div class="evolution-notice" id="evolutionNotice">
+                <div>🎉 Evolution! 🎉</div>
+                <div id="evolutionText"></div>
+            </div>
+            
+            <div class="game-over" id="gameOver">
+                <div>💔 Game Over 💔</div>
+                <div>Your pet has passed away...</div>
+                <button class="btn" onclick="resetGame()" style="margin-top: 10px;">New Pet</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn feed" onclick="feed()">🍎<br>Feed</button>
+            <button class="btn play" onclick="play()">🎮<br>Play</button>
+            <button class="btn medicine" onclick="giveMedicine()">💊<br>Medicine</button>
+            <button class="btn clean" onclick="clean()">🧽<br>Clean</button>
+            <button class="btn sleep" onclick="toggleSleep()">💤<br>Sleep</button>
+            <button class="btn stats" onclick="showDetailedStats()">📊<br>Stats</button>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyApylUxalorvYPqY5GBaxOuhhPUQntgtrk",
+            authDomain: "shard-pet.firebaseapp.com",
+            databaseURL: "https://shard-pet-default-rtdb.firebaseio.com/",
+            projectId: "shard-pet",
+            storageBucket: "shard-pet.appspot.com",
+            messagingSenderId: "45884335163",
+            appId: "1:45884335163:web:f4526c61770fbff480681e"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        class FirebaseTamagotchi {
+            constructor(petId = null) {
+                this.petId = petId || this.generatePetId();
+                this.isHost = !petId;
+                
+                this.age = 0;
+                this.stage = 'egg';
+                this.health = 100;
+                this.hunger = 80;
+                this.happiness = 70;
+                this.energy = 90;
+                this.isSleeping = false;
+                this.isDead = false;
+                this.cleanliness = 100;
+                this.lastUpdate = Date.now();
+                this.gameStartTime = Date.now();
+                this.caretakers = [];
+                
+                this.stages = {
+                    egg: { emoji: '🥚', name: 'Egg', duration: 30000 },
+                    baby: { emoji: '🐣', name: 'Baby', duration: 60000 },
+                    child: { emoji: '🐤', name: 'Child', duration: 120000 },
+                    teen: { emoji: '🐦', name: 'Teen', duration: 180000 },
+                    adult: { emoji: '🦅', name: 'Adult', duration: Infinity }
+                };
+
+                this.setupFirebaseListeners();
+                
+                if (this.isHost) {
+                    this.initializeNewPet();
+                    this.startGameLoop();
+                }
+                
+                this.updateConnectionStatus(true);
+                this.updateDisplay();
+            }
+
+            generatePetId() {
+                return Math.random().toString(36).substr(2, 9).toUpperCase();
+            }
+
+            setupFirebaseListeners() {
+                database.ref(`pets/${this.petId}`).on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        this.syncFromFirebase(data);
+                        this.updateDisplay();
+                    }
+                });
+
+                database.ref(`activities/${this.petId}`).on('value', (snapshot) => {
+                    const activities = snapshot.val();
+                    if (activities) {
+                        this.updateActivityLog(activities);
+                    }
+                });
+            }
+
+            initializeNewPet() {
+                const initialData = {
+                    age: this.age,
+                    stage: this.stage,
+                    health: this.health,
+                    hunger: this.hunger,
+                    happiness: this.happiness,
+                    energy: this.energy,
+                    isSleeping: this.isSleeping,
+                    isDead: this.isDead,
+                    cleanliness: this.cleanliness,
+                    lastUpdate: this.lastUpdate,
+                    gameStartTime: this.gameStartTime,
+                    caretakers: []
+                };
+                
+                database.ref(`pets/${this.petId}`).set(initialData);
+                this.logActivity('Pet created!', 'System');
+            }
+
+            syncFromFirebase(data) {
+                this.age = data.age || 0;
+                this.stage = data.stage || 'egg';
+                this.health = data.health || 100;
+                this.hunger = data.hunger || 80;
+                this.happiness = data.happiness || 70;
+                this.energy = data.energy || 90;
+                this.isSleeping = data.isSleeping || false;
+                this.isDead = data.isDead || false;
+                this.cleanliness = data.cleanliness || 100;
+                this.lastUpdate = data.lastUpdate || Date.now();
+                this.gameStartTime = data.gameStartTime || Date.now();
+                this.caretakers = data.caretakers || [];
+            }
+
+            syncToFirebase() {
+                const data = {
+                    age: this.age,
+                    stage: this.stage,
+                    health: this.health,
+                    hunger: this.hunger,
+                    happiness: this.happiness,
+                    energy: this.energy,
+                    isSleeping: this.isSleeping,
+                    isDead: this.isDead,
+                    cleanliness: this.cleanliness,
+                    lastUpdate: this.lastUpdate,
+                    gameStartTime: this.gameStartTime,
+                    caretakers: this.caretakers
+                };
+                
+                database.ref(`pets/${this.petId}`).set(data);
+            }
+
+            logActivity(action, caretaker) {
+                const activityData = {
+                    action: action,
+                    caretaker: caretaker,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                };
+                
+                database.ref(`activities/${this.petId}`).push(activityData);
+            }
+
+            addCaretaker(name) {
+                if (!this.caretakers.includes(name)) {
+                    this.caretakers.push(name);
+                    this.syncToFirebase();
+                    this.logActivity(`${name} joined as caretaker`, 'System');
+                }
+            }
+
+            startGameLoop() {
+                if (!this.isHost) return;
+                
+                setInterval(() => {
+                    if (!this.isDead && !this.isSleeping) {
+                        this.updateStats();
+                        this.checkEvolution();
+                        this.syncToFirebase();
+                    }
+                    this.updateAge();
+                }, 2000);
+            }
+
+            updateStats() {
+                const now = Date.now();
+                const timeDiff = now - this.lastUpdate;
+                const factor = timeDiff / 10000;
+
+                if (!this.isSleeping) {
+                    this.hunger = Math.max(0, this.hunger - (2 * factor));
+                    this.happiness = Math.max(0, this.happiness - (1.5 * factor));
+                    this.energy = Math.max(0, this.energy - (1 * factor));
+                    this.cleanliness = Math.max(0, this.cleanliness - (0.5 * factor));
+                }
+
+                if (this.hunger < 20 || this.happiness < 20 || this.cleanliness < 20) {
+                    this.health = Math.max(0, this.health - (1 * factor));
+                }
+
+                if (this.health <= 0) {
+                    this.isDead = true;
+                    document.getElementById('gameOver').style.display = 'block';
+                }
+
+                this.lastUpdate = now;
+            }
+
+            updateAge() {
+                this.age = Math.floor((Date.now() - this.gameStartTime) / 1000);
+            }
+
+            checkEvolution() {
+                const currentTime = Date.now() - this.gameStartTime;
+                const stages = ['egg', 'baby', 'child', 'teen', 'adult'];
+                
+                for (let i = 0; i < stages.length; i++) {
+                    const stage = stages[i];
+                    if (this.stage === stage && currentTime >= this.stages[stage].duration && stages[i + 1]) {
+                        this.evolve(stages[i + 1]);
+                        break;
+                    }
+                }
+            }
+
+            evolve(newStage) {
+                this.stage = newStage;
+                const evolutionNotice = document.getElementById('evolutionNotice');
+                const evolutionText = document.getElementById('evolutionText');
+                
+                evolutionText.textContent = `Your pet evolved into a ${this.stages[newStage].name}!`;
+                evolutionNotice.style.display = 'block';
+                
+                setTimeout(() => {
+                    evolutionNotice.style.display = 'none';
+                }, 3000);
+                
+                this.logActivity(`Pet evolved to ${this.stages[newStage].name}!`, 'System');
+            }
+
+            feed() {
+                if (this.isDead || this.isSleeping) return;
+                
+                this.hunger = Math.min(100, this.hunger + 25);
+                this.happiness = Math.min(100, this.happiness + 5);
+                this.showStatus('Yum! Your pet is eating! 🍎');
+                this.syncToFirebase();
+                this.logActivity('Fed the pet', currentCaretaker || 'Anonymous');
+                this.updateDisplay();
+            }
+
+            play() {
+                if (this.isDead || this.isSleeping) return;
+                
+                if (this.energy < 20) {
+                    this.showStatus('Your pet is too tired to play! 😴');
+                    return;
+                }
+                
+                this.happiness = Math.min(100, this.happiness + 20);
+                this.energy = Math.max(0, this.energy - 15);
+                this.hunger = Math.max(0, this.hunger - 10);
+                this.showStatus('Wheee! Your pet is having fun! 🎮');
+                
+                const pet = document.getElementById('pet');
+                pet.classList.add('happy');
+                setTimeout(() => pet.classList.remove('happy'), 2000);
+                
+                this.syncToFirebase();
+                this.logActivity('Played with the pet', currentCaretaker || 'Anonymous');
+                this.updateDisplay();
+            }
+
+            giveMedicine() {
+                if (this.isDead || this.isSleeping) return;
+                
+                this.health = Math.min(100, this.health + 30);
+                this.happiness = Math.max(0, this.happiness - 10);
+                this.showStatus('Medicine administered! 💊');
+                this.syncToFirebase();
+                this.logActivity('Gave medicine', currentCaretaker || 'Anonymous');
+                this.updateDisplay();
+            }
+
+            clean() {
+                if (this.isDead || this.isSleeping) return;
+                
+                this.cleanliness = 100;
+                this.happiness = Math.min(100, this.happiness + 10);
+                this.showStatus('All clean and fresh! ✨');
+                this.syncToFirebase();
+                this.logActivity('Cleaned the pet', currentCaretaker || 'Anonymous');
+                this.updateDisplay();
+            }
+
+            toggleSleep() {
+                if (this.isDead) return;
+                
+                this.isSleeping = !this.isSleeping;
+                const sleepOverlay = document.getElementById('sleepOverlay');
+                const pet = document.getElementById('pet');
+                
+                if (this.isSleeping) {
+                    sleepOverlay.style.display = 'flex';
+                    pet.classList.add('sleeping');
+                    this.showStatus('Good night! 💤');
+                    this.logActivity('Put pet to sleep', currentCaretaker || 'Anonymous');
+                    
+                    if (this.isHost) {
+                        const sleepInterval = setInterval(() => {
+                            if (!this.isSleeping) {
+                                clearInterval(sleepInterval);
+                                return;
+                            }
+                            this.energy = Math.min(100, this.energy + 2);
+                            this.syncToFirebase();
+                        }, 1000);
+                    }
+                } else {
+                    sleepOverlay.style.display = 'none';
+                    pet.classList.remove('sleeping');
+                    this.showStatus('Good morning! 🌅');
+                    this.logActivity('Woke up the pet', currentCaretaker || 'Anonymous');
+                }
+                
+                this.syncToFirebase();
+                this.updateDisplay();
+            }
+
+            showStatus(message) {
+                document.getElementById('statusText').textContent = message;
+                setTimeout(() => {
+                    if (!this.isDead) {
+                        this.updateStatusText();
+                    }
+                }, 3000);
+            }
+
+            updateStatusText() {
+                let status = '';
+                
+                if (this.isSleeping) {
+                    status = 'Sleeping peacefully... 💤';
+                } else if (this.health < 30) {
+                    status = 'Feeling sick... 🤒';
+                } else if (this.hunger < 30) {
+                    status = 'Getting hungry... 🍎';
+                } else if (this.happiness < 30) {
+                    status = 'Feeling sad... 😢';
+                } else if (this.energy < 30) {
+                    status = 'Getting tired... 😴';
+                } else if (this.cleanliness < 30) {
+                    status = 'Needs cleaning... 🧽';
+                } else {
+                    const messages = [
+                        'Feeling great! 😊',
+                        'Happy and healthy! ✨',
+                        'Living the good life! 🌟',
+                        'All is well! 💖'
+                    ];
+                    status = messages[Math.floor(Math.random() * messages.length)];
+                }
+                
+                document.getElementById('statusText').textContent = status;
+            }
+
+            updateDisplay() {
+                if (this.isDead) return;
+                
+                const pet = document.getElementById('pet');
+                pet.textContent = this.stages[this.stage].emoji;
+                
+                if (this.health < 30 && !this.isSleeping) {
+                    pet.classList.add('sick');
+                } else {
+                    pet.classList.remove('sick');
+                }
+                
+                this.updateStatBar('health', this.health);
+                this.updateStatBar('hunger', this.hunger);
+                this.updateStatBar('happiness', this.happiness);
+                this.updateStatBar('energy', this.energy);
+                
+                document.getElementById('age').textContent = this.age;
+                document.getElementById('petName').textContent = this.stages[this.stage].name;
+                
+                this.updateStatusText();
+            }
+
+            updateStatBar(stat, value) {
+                const bar = document.getElementById(stat);
+                bar.style.width = value + '%';
+                
+                if (value < 30) {
+                    bar.classList.add('low');
+                } else {
+                    bar.classList.remove('low');
+                }
+            }
+
+            updateConnectionStatus(connected) {
+                const status = document.getElementById('connectionStatus');
+                if (connected) {
+                    status.textContent = `🟢 Connected - Pet ID: ${this.petId}`;
+                    status.className = 'connection-status connected';
+                } else {
+                    status.textContent = '🔴 Disconnected';
+                    status.className = 'connection-status disconnected';
+                }
+            }
+
+            updateActivityLog(activities) {
