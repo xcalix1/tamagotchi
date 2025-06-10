@@ -844,3 +844,112 @@
             }
 
             updateActivityLog(activities) {
+                const logElement = document.getElementById('activityLog');
+                const activityList = Object.values(activities)
+                    .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+                    .slice(0, 10);
+                
+                logElement.innerHTML = '<h4>Recent Activity</h4>' + 
+                    activityList.map(activity => 
+                        `<div>${activity.caretaker}: ${activity.action}</div>`
+                    ).join('');
+            }
+        }
+
+        let tamagotchi;
+        let currentCaretaker = '';
+
+        // Setup functions
+        function setupNewPet() {
+            const name = document.getElementById('caretakerName').value.trim();
+            if (!name) {
+                alert('Please enter your name!');
+                return;
+            }
+            
+            currentCaretaker = name;
+            tamagotchi = new FirebaseTamagotchi();
+            tamagotchi.addCaretaker(name);
+            
+            document.getElementById('setupPanel').style.display = 'none';
+            document.getElementById('tamagotchiDevice').style.display = 'block';
+            document.getElementById('petIdDisplay').style.display = 'block';
+            document.getElementById('petIdDisplay').textContent = `Pet ID: ${tamagotchi.petId} (Click to copy!)`;
+        }
+
+        function joinExistingPet() {
+            const name = document.getElementById('caretakerName').value.trim();
+            const petId = document.getElementById('petIdInput').value.trim().toUpperCase();
+            
+            if (!name || !petId) {
+                alert('Please enter both your name and the Pet ID!');
+                return;
+            }
+            
+            currentCaretaker = name;
+            tamagotchi = new FirebaseTamagotchi(petId);
+            tamagotchi.addCaretaker(name);
+            
+            document.getElementById('setupPanel').style.display = 'none';
+            document.getElementById('tamagotchiDevice').style.display = 'block';
+            document.getElementById('petIdDisplay').style.display = 'block';
+            document.getElementById('petIdDisplay').textContent = `Pet ID: ${petId} (Click to copy!)`;
+        }
+
+        function copyPetId() {
+            if (tamagotchi && tamagotchi.petId) {
+                navigator.clipboard.writeText(tamagotchi.petId).then(() => {
+                    alert('Pet ID copied to clipboard!');
+                }).catch(() => {
+                    alert(`Pet ID: ${tamagotchi.petId}`);
+                });
+            }
+        }
+
+        function feed() {
+            if (tamagotchi) tamagotchi.feed();
+        }
+
+        function play() {
+            if (tamagotchi) tamagotchi.play();
+        }
+
+        function giveMedicine() {
+            if (tamagotchi) tamagotchi.giveMedicine();
+        }
+
+        function clean() {
+            if (tamagotchi) tamagotchi.clean();
+        }
+
+        function toggleSleep() {
+            if (tamagotchi) tamagotchi.toggleSleep();
+        }
+
+        function showDetailedStats() {
+            if (!tamagotchi) return;
+            
+            const stats = `
+Age: ${tamagotchi.age} seconds
+Stage: ${tamagotchi.stages[tamagotchi.stage].name}
+Health: ${Math.round(tamagotchi.health)}%
+Hunger: ${Math.round(tamagotchi.hunger)}%
+Happiness: ${Math.round(tamagotchi.happiness)}%
+Energy: ${Math.round(tamagotchi.energy)}%
+Cleanliness: ${Math.round(tamagotchi.cleanliness)}%
+Caretakers: ${tamagotchi.caretakers.join(', ') || 'None'}
+            `;
+            alert(stats);
+        }
+
+        function resetGame() {
+            document.getElementById('gameOver').style.display = 'none';
+            if (tamagotchi && tamagotchi.isHost) {
+                tamagotchi = new FirebaseTamagotchi();
+                tamagotchi.addCaretaker(currentCaretaker);
+                document.getElementById('petIdDisplay').textContent = `Pet ID: ${tamagotchi.petId} (Click to copy!)`;
+            }
+        }
+    </script>
+</body>
+</html>
